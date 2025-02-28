@@ -1,0 +1,32 @@
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav-container {
+  flex: 1;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+.content {
+  padding: 20px;
+}
+
+/* This is needed to style the menu items
+   See https://stackoverflow.com/questions/43513954/angular-material-2-customize-list-item-style
+   and https://stackoverflow.com/questions/36265026/angular-2-innerhtml-styling/36265382#36265382 */
+:host ::ng-deep {
+  .mat-mdc-list-item-unscoped-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
