@@ -13,6 +13,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './core/auth/login/login.component';
@@ -20,6 +24,7 @@ import { FooterComponent } from './core/layout/footer/footer.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { SidebarComponent } from './core/layout/sidebar/sidebar.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { EventFormDialogComponent } from './features/events/event-form-dialog/event-form-dialog.component';
 import { EventsComponent } from './features/events/events.component';
 import { GuestsComponent } from './features/guests/guests.component';
 
@@ -33,6 +38,7 @@ import { GuestsComponent } from './features/guests/guests.component';
     EventsComponent,
     GuestsComponent,
     LoginComponent,
+    EventFormDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +55,10 @@ import { GuestsComponent } from './features/guests/guests.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
