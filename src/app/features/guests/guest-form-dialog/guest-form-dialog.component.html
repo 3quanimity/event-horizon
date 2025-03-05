@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>{{ data.guest ? 'Edit Guest' : 'Add Guest' }}</h2>
+
+<form [formGroup]="guestForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" required />
+      <mat-error *ngIf="guestForm.get('email')?.hasError('email')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Event</mat-label>
+      <mat-select formControlName="eventId" required>
+        <mat-option *ngFor="let event of events$ | async" [value]="event.id">
+          {{ event.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>RSVP Status</mat-label>
+      <mat-select formControlName="rsvpStatus">
+        <mat-option value="pending">Pending</mat-option>
+        <mat-option value="accepted">Accepted</mat-option>
+        <mat-option value="declined">Declined</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!guestForm.valid"
+    >
+      {{ data.guest ? 'Update' : 'Add' }}
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { EventService } from '../../core/services/event.service';
-import { Event } from '../../shared/interfaces/event.interface';
+import { EventItem } from '../../shared/interfaces/event.interface';
 import { EventFormDialogComponent } from './event-form-dialog/event-form-dialog.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { EventFormDialogComponent } from './event-form-dialog/event-form-dialog.
   styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-  events$: Observable<Event[]>;
+  events$: Observable<EventItem[]>;
   displayedColumns: string[] = ['title', 'date', 'location', 'actions'];
 
   constructor(private eventService: EventService, private dialog: MatDialog) {
@@ -22,7 +22,7 @@ export class EventsComponent implements OnInit {
     this.eventService.getEvents().subscribe();
   }
 
-  openEventDialog(event?: Event): void {
+  openEventDialog(event?: EventItem): void {
     const dialogRef = this.dialog.open(EventFormDialogComponent, {
       width: '500px',
       data: event || {},

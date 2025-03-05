@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EventService } from '../../core/services/event.service';
-import { Event } from '../../shared/interfaces/event.interface';
+import { EventItem } from '../../shared/interfaces/event.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +10,7 @@ import { Event } from '../../shared/interfaces/event.interface';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  upcomingEvents$: Observable<Event[]>;
+  upcomingEvents$: Observable<EventItem[]>;
   totalEvents$: Observable<number>;
 
   constructor(private eventService: EventService) {

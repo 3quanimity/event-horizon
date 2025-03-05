@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Event } from '../../shared/interfaces/event.interface';
+import { EventItem } from '../../shared/interfaces/event.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-  private events: Event[] = [];
-  private eventsSubject = new BehaviorSubject<Event[]>([]);
+  private events: EventItem[] = [];
+  private eventsSubject = new BehaviorSubject<EventItem[]>([]);
   public events$ = this.eventsSubject.asObservable();
 
   constructor() {
@@ -24,16 +24,16 @@ export class EventService {
     localStorage.setItem('events', JSON.stringify(this.events));
   }
 
-  getEvents(): Observable<Event[]> {
+  getEvents(): Observable<EventItem[]> {
     return of(this.events);
   }
 
-  getEvent(id: string): Observable<Event | undefined> {
+  getEvent(id: string): Observable<EventItem | undefined> {
     return of(this.events.find(event => event.id === id));
   }
 
-  createEvent(event: Omit<Event, 'id'>): Observable<Event> {
-    const newEvent: Event = {
+  createEvent(event: Omit<EventItem, 'id'>): Observable<EventItem> {
+    const newEvent: EventItem = {
       ...event,
       id: Date.now().toString(), // simple ID generation for MVP
     };
@@ -47,8 +47,8 @@ export class EventService {
 
   updateEvent(
     id: string,
-    event: Partial<Event>
-  ): Observable<Event | undefined> {
+    event: Partial<EventItem>
+  ): Observable<EventItem | undefined> {
     const index = this.events.findIndex(event => event.id === id);
 
     if (index !== -1) {

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Event } from '../../../shared/interfaces/event.interface';
+import { EventItem } from '../../../shared/interfaces/event.interface';
 
 @Component({
   selector: 'app-event-form-dialog',
@@ -14,7 +14,7 @@ export class EventFormDialogComponent {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<EventFormDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Event
+    @Inject(MAT_DIALOG_DATA) public data: EventItem
   ) {
     this.eventForm = this.fb.group({
       id: [data.id || null],
